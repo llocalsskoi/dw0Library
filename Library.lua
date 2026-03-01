@@ -1,11 +1,10 @@
 local Input = game:GetService("UserInputService")
-local Tween = game:GetService("TweenService")
 local CoreGui = game:GetService("CoreGui")
 
 local Library = {
     Theme = {
         BackgroundOutline1 = Color3.fromRGB(15, 15, 15),
-        BackgroundOutline2 = Color3.fromRGB(50, 50, 180),
+        BackgroundOutline2 = Color3.fromRGB(50, 180, 80),
         Background = Color3.fromRGB(30, 30, 30)
     },
     Utils = {
@@ -64,6 +63,8 @@ local function MakeDraggable(frame, dragHandle)
     end)
 end
 
+local OriginalProps = {}
+
 function Library:CreateWindow(Parametrs)
     if not Parametrs then return end
     if typeof(Parametrs["Name"]) ~= "string" then return end
@@ -105,7 +106,7 @@ function Library:CreateWindow(Parametrs)
     local TitleLabel = CreateObj("TextLabel", {
         Parent = TitleInner,
         Size = UDim2.new(1, 0, 1, 0),
-        Position = UDim2.new(0, 25, 0, 0),
+        Position = UDim2.new(0, 10, 0, 0),
         BackgroundTransparency = 1,
         Text = Parametrs.Name,
         TextColor3 = Color3.new(1, 1, 1),
@@ -117,8 +118,8 @@ function Library:CreateWindow(Parametrs)
 
     local WindowOutline = CreateObj("Frame", {
         Parent = WindowFrame,
-        Size = UDim2.new(1, -122, 1, -40),
-        Position = UDim2.new(0, 122, 0, 40),
+        Size = UDim2.new(1, -2, 1, -42),
+        Position = UDim2.new(0, 1, 0, 41),
         BackgroundColor3 = Library.Theme.BackgroundOutline2,
         BorderSizePixel = 0
     })
@@ -148,7 +149,7 @@ Input.InputBegan:Connect(function(input, gameProcessed)
     if input.KeyCode == Library.Utils.Key then
         Library.Utils.Showed = not Library.Utils.Showed
         if Library.Utils.Showed then
-            --
+            --dd now
         else
             --
         end

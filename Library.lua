@@ -74,7 +74,6 @@ local OriginalProps = {}
 function Library:CreateWindow(Parametrs)
 	if not Parametrs then return end
 	if typeof(Parametrs["Name"]) ~= "string" then return end
-	if typeof(Parametrs["Color"]) ~= "Color3" then return end
 
 	local WindowFrame = CreateObj("Frame",{
 		Parent = ScreenGui__,

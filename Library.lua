@@ -140,7 +140,7 @@ function Library:CreateWindow(Parametrs)
 
     local WindowOutline = CreateObj("Frame", {
         Parent = WindowFrame,
-        Size = UDim2.new(1, -120, 1, -42),
+        Size = UDim2.new(0, -120, 1, -42),
         Position = UDim2.new(0, 122, 0, 41),
         BackgroundColor3 = Library.Theme.BackgroundOutline2,
         BorderSizePixel = 0
@@ -157,20 +157,6 @@ function Library:CreateWindow(Parametrs)
     MakeDraggable(WindowFrame,TitleFrame)
 end
 
-local function Show(ScreenGui)
-    for i,_ in pairs(ScreenGui:GetDescendants()) do
-        if _:IsA("TextLabel") and _.TextTransparency == 1 then _.TextTransparency = 0 end
-        if _:IsA("Frame") and _.BackgroundTransparency == 1 then _.BackgroundTransparency = 0 end
-    end
-end
-
-local function UnShow(ScreenGui)
-    for i,_ in pairs(ScreenGui:GetDescendants()) do
-        if _:IsA("TextLabel") and _.TextTransparency == 0 then _.TextTransparency = 1 end
-        if _:IsA("Frame") and _.BackgroundTransparency == 0 then _.BackgroundTransparency = 1 end
-    end
-end
-
 function Library:Unload()
     pcall(function() ScreenGui__:Destroy() end)
 end
@@ -185,9 +171,9 @@ Input.InputBegan:Connect(function(input, gameProcessed)
     if input.KeyCode == Library.Utils.Key then
         Library.Utils.Showed = not Library.Utils.Showed
         if Library.Utils.Showed then
-            UnShow(ScreenGui__)
+            --
         else
-            Show(ScreenGui__)
+            --
         end
     end
 end)

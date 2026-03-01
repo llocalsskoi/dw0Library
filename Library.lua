@@ -5,7 +5,7 @@ local CoreGui = game:GetService("CoreGui")
 local Library = {
     Theme = {
         BackgroundOutline1 = Color3.fromRGB(15, 15, 15),
-        BackgroundOutline2 = Color3.fromRGB(50, 180, 80),
+        BackgroundOutline2 = Color3.fromRGB(50, 50, 180),
         Background = Color3.fromRGB(30, 30, 30)
     },
     Utils = {
@@ -117,11 +117,10 @@ function Library:CreateWindow(Parametrs)
 
     local WindowOutline = CreateObj("Frame", {
         Parent = WindowFrame,
-        Size = UDim2.new(1, 0, 1, 0),
-        Position = UDim2.new(0, 0, 0, 0),
+        Size = UDim2.new(1, -122, 1, -40),
+        Position = UDim2.new(0, 122, 0, 40),
         BackgroundColor3 = Library.Theme.BackgroundOutline2,
-        BorderSizePixel = 0,
-        ZIndex = 0
+        BorderSizePixel = 0
     })
 
     local WindowInner = CreateObj("Frame", {
@@ -129,8 +128,7 @@ function Library:CreateWindow(Parametrs)
         Size = UDim2.new(1, -2, 1, -2),
         Position = UDim2.new(0, 1, 0, 1),
         BackgroundColor3 = Library.Theme.BackgroundOutline1,
-        BorderSizePixel = 0,
-        ZIndex = 0
+        BorderSizePixel = 0
     })
 
     MakeDraggable(WindowFrame,TitleFrame)

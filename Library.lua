@@ -1,10 +1,11 @@
 local Input = game:GetService("UserInputService")
+local Tween = game:GetService("TweenService")
 local CoreGui = game:GetService("CoreGui")
 
 local Library = {
     Theme = {
         BackgroundOutline1 = Color3.fromRGB(15, 15, 15),
-        BackgroundOutline2 = Color3.fromRGB(50, 180, 80),
+        BackgroundOutline2 = Color3.fromRGB(50, 50, 180),
         Background = Color3.fromRGB(30, 30, 30)
     },
     Utils = {
@@ -149,7 +150,7 @@ Input.InputBegan:Connect(function(input, gameProcessed)
     if input.KeyCode == Library.Utils.Key then
         Library.Utils.Showed = not Library.Utils.Showed
         if Library.Utils.Showed then
-            --dd now
+            --dddddddd noww nig
         else
             --
         end

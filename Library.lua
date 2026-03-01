@@ -64,8 +64,6 @@ local function MakeDraggable(frame, dragHandle)
     end)
 end
 
-local OriginalProps = {}
-
 function Library:CreateWindow(Parametrs)
     if not Parametrs then return end
     if typeof(Parametrs["Name"]) ~= "string" then return end
@@ -159,6 +157,20 @@ function Library:CreateWindow(Parametrs)
     MakeDraggable(WindowFrame,TitleFrame)
 end
 
+local function Show(ScreenGui)
+    for i,_ in pairs(ScreenGui:GetDescendants()) do
+        if _:IsA("TextLabel") and _.TextTransparency == 1 then _.TextTransparency = 0 end
+        if _:IsA("Frame") and _.BackgroundTransparency == 1 then _.BackgroundTransparency = 0 end
+    end
+end
+
+local function UnShow(ScreenGui)
+    for i,_ in pairs(ScreenGui:GetDescendants()) do
+        if _:IsA("TextLabel") and _.TextTransparency == 0 then _.TextTransparency = 1 end
+        if _:IsA("Frame") and _.BackgroundTransparency == 0 then _.BackgroundTransparency = 1 end
+    end
+end
+
 function Library:Unload()
     pcall(function() ScreenGui__:Destroy() end)
 end
@@ -173,9 +185,9 @@ Input.InputBegan:Connect(function(input, gameProcessed)
     if input.KeyCode == Library.Utils.Key then
         Library.Utils.Showed = not Library.Utils.Showed
         if Library.Utils.Showed then
-            --
+            UnShow(ScreenGui__)
         else
-            --
+            Show(ScreenGui__)
         end
     end
 end)

@@ -5,7 +5,7 @@ local CoreGui = game:GetService("CoreGui")
 local Library = {
     Theme = {
         BackgroundOutline1 = Color3.fromRGB(15, 15, 15),
-        BackgroundOutline2 = Color3.fromRGB(65, 180, 50),
+        BackgroundOutline2 = Color3.fromRGB(50, 50, 180),
         Background = Color3.fromRGB(30, 30, 30)
     },
     Utils = {
@@ -69,10 +69,10 @@ function Library:CreateWindow(Parametrs)
     if typeof(Parametrs["Name"]) ~= "string" then return end
 
     local WindowFrame = CreateObj("Frame",{
-        Parent      = ScreenGui__,
-        Size        = UDim2.new(0, 500, 0, 550),
+        Parent = ScreenGui__,
+        Size = UDim2.new(0, 500, 0, 550),
         AnchorPoint = Vector2.new(0.5, 0.5),
-        Position    = UDim2.new(0.5, 0, 0.5, 0),
+        Position = UDim2.new(0.5, 0, 0.5, 0),
         BackgroundColor3 = Library.Theme.Background,
         BackgroundTransparency = 0,
         BorderSizePixel = 0,
@@ -80,74 +80,55 @@ function Library:CreateWindow(Parametrs)
     })
 
     local TitleFrame = CreateObj("Frame", {
-        Parent   = WindowFrame,
-        Size     = UDim2.new(1, 0, 0, 40),
+        Parent = WindowFrame,
+        Size = UDim2.new(1, 0, 0, 40),
         Position = UDim2.new(0, 0, 0, 0),
         BackgroundTransparency = 1
     })
 
     local TitleOutline = CreateObj("Frame", {
-        Parent           = TitleFrame,
-        Size             = UDim2.new(1, -2, 1, -2),
-        Position         = UDim2.new(0, 1, 0, 1),
+        Parent = TitleFrame,
+        Size = UDim2.new(1, -2, 1, -2),
+        Position = UDim2.new(0, 1, 0, 1),
         BackgroundColor3 = Library.Theme.BackgroundOutline2,
-        BorderSizePixel  = 0
+        BorderSizePixel = 0
     })
 
     local TitleInner = CreateObj("Frame", {
-        Parent           = TitleOutline,
-        Size             = UDim2.new(1, -2, 1, -2),
-        Position         = UDim2.new(0, 1, 0, 1),
+        Parent = TitleOutline,
+        Size = UDim2.new(1, -2, 1, -2),
+        Position = UDim2.new(0, 1, 0, 1),
         BackgroundColor3 = Library.Theme.BackgroundOutline1,
-        BorderSizePixel  = 0
+        BorderSizePixel = 0
     })
 
     local TitleLabel = CreateObj("TextLabel", {
-        Parent     = TitleInner,
-        Size       = UDim2.new(1, 0, 1, 0),
-        Position   = UDim2.new(0, 25, 0, 0),
+        Parent = TitleInner,
+        Size = UDim2.new(1, 0, 1, 0),
+        Position = UDim2.new(0, 25, 0, 0),
         BackgroundTransparency = 1,
-        Text       = Parametrs.Name,
+        Text = Parametrs.Name,
         TextColor3 = Color3.new(1, 1, 1),
         TextScaled = false,
-        TextSize   = 14,
-        Font       = Enum.Font.Code,
+        TextSize = 14,
+        Font = Enum.Font.Code,
         TextXAlignment = Enum.TextXAlignment.Left
     })
 
-    local TabsFrame = CreateObj("Frame", {
-        Parent   = WindowFrame,
-        Size     = UDim2.new(0, 122, 1, -42),
-        Position = UDim2.new(0, 0, 0, 40),
-        BackgroundTransparency = 1
-    })
-
-    local TabsOutline = CreateObj("Frame", {
-        Parent   = TabsFrame,
-        Size     = UDim2.new(1, -2, 1, -2),
-        Position = UDim2.new(0, 1, 0, 1),
-        BackgroundColor3 = Library.Theme.BackgroundOutline2,
-    })
-
-    local TabsInner = CreateObj("Frame", {
-        Parent   = TabsOutline,
-        Size     = UDim2.new(1, -2, 1, -2),
-        Position = UDim2.new(0, 1, 0, 1),
-        BackgroundColor3 = Library.Theme.BackgroundOutline1,
-    })
-
     local WindowOutline = CreateObj("Frame", {
-        Parent   = WindowFrame,
-        Size     = UDim2.new(1, -124, 1, -42),
+        Parent = WindowFrame,
+        Size = UDim2.new(1, -122, 1, -40),
         Position = UDim2.new(0, 122, 0, 40),
         BackgroundColor3 = Library.Theme.BackgroundOutline2,
+        BorderSizePixel = 0
     })
 
     local WindowInner = CreateObj("Frame", {
-        Parent   = WindowOutline,
-        Size     = UDim2.new(1, -2, 1, -2),
+        Parent = WindowOutline,
+        Size = UDim2.new(1, -2, 1, -2),
         Position = UDim2.new(0, 1, 0, 1),
         BackgroundColor3 = Library.Theme.BackgroundOutline1,
+        BorderSizePixel = 0
     })
 
     MakeDraggable(WindowFrame,TitleFrame)

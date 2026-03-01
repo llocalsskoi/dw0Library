@@ -73,52 +73,15 @@ function Library:CreateWindow(Parametrs)
         Size = UDim2.new(0, 500, 0, 550),
         AnchorPoint = Vector2.new(0.5, 0.5),
         Position = UDim2.new(0.5, 0, 0.5, 0),
-        BackgroundColor3 = Library.Theme.Background,
-        BackgroundTransparency = 0,
+        BackgroundTransparency = 1,
         BorderSizePixel = 0,
         Visible = true
     })
 
-    local TitleFrame = CreateObj("Frame", {
-        Parent = WindowFrame,
-        Size = UDim2.new(1, 0, 0, 40),
-        Position = UDim2.new(0, 0, 0, 0),
-        BackgroundTransparency = 1
-    })
-
-    local TitleOutline = CreateObj("Frame", {
-        Parent = TitleFrame,
-        Size = UDim2.new(1, -2, 1, -2),
-        Position = UDim2.new(0, 1, 0, 1),
-        BackgroundColor3 = Library.Theme.BackgroundOutline2,
-        BorderSizePixel = 0
-    })
-
-    local TitleInner = CreateObj("Frame", {
-        Parent = TitleOutline,
-        Size = UDim2.new(1, -2, 1, -2),
-        Position = UDim2.new(0, 1, 0, 1),
-        BackgroundColor3 = Library.Theme.BackgroundOutline1,
-        BorderSizePixel = 0
-    })
-
-    local TitleLabel = CreateObj("TextLabel", {
-        Parent = TitleInner,
-        Size = UDim2.new(1, 0, 1, 0),
-        Position = UDim2.new(0, 25, 0, 0),
-        BackgroundTransparency = 1,
-        Text = Parametrs.Name,
-        TextColor3 = Color3.new(1, 1, 1),
-        TextScaled = false,
-        TextSize = 14,
-        Font = Enum.Font.Code,
-        TextXAlignment = Enum.TextXAlignment.Left
-    })
-
     local WindowOutline = CreateObj("Frame", {
         Parent = WindowFrame,
-        Size = UDim2.new(1, -122, 1, -40),
-        Position = UDim2.new(0, 122, 0, 40),
+        Size = UDim2.new(1, 0, 1, 0),
+        Position = UDim2.new(0, 0, 0, 0),
         BackgroundColor3 = Library.Theme.BackgroundOutline2,
         BorderSizePixel = 0
     })
@@ -131,7 +94,26 @@ function Library:CreateWindow(Parametrs)
         BorderSizePixel = 0
     })
 
-    MakeDraggable(WindowFrame,TitleFrame)
+    local TitleFrame = CreateObj("Frame", {
+        Parent = WindowInner,
+        Size = UDim2.new(1, 0, 0, 40),
+        Position = UDim2.new(0, 0, 0, 0),
+        BackgroundTransparency = 1
+    })
+
+    local TitleLabel = CreateObj("TextLabel", {
+        Parent = TitleFrame,
+        Size = UDim2.new(1, -20, 1, 0),
+        Position = UDim2.new(0, 10, 0, 0),
+        BackgroundTransparency = 1,
+        Text = Parametrs.Name,
+        TextColor3 = Color3.new(1, 1, 1),
+        TextSize = 14,
+        Font = Enum.Font.Code,
+        TextXAlignment = Enum.TextXAlignment.Left
+    })
+
+    MakeDraggable(WindowFrame, TitleFrame)
 end
 
 function Library:Unload()
@@ -148,7 +130,7 @@ Input.InputBegan:Connect(function(input, gameProcessed)
     if input.KeyCode == Library.Utils.Key then
         Library.Utils.Showed = not Library.Utils.Showed
         if Library.Utils.Showed then
-            --
+            --//
         else
             --
         end

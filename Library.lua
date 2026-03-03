@@ -10,6 +10,8 @@ local Library = {
 	Utils = { Showed = true, Key = nil }
 }
 
+-- hi
+
 getfenv().Objects = {}
 
 local ScreenGui__ = Instance.new("ScreenGui")
@@ -50,9 +52,7 @@ local function MakeDraggable(frame, dragHandle)
 	end)
 end
 
--- ================================================================
--- Фабрика элементов — переиспользуется и в Tab и в Box
--- ================================================================
+
 local function BuildElements(Container, AccentColor)
 	local ItemCount = 0
 	local API = {}
@@ -297,8 +297,6 @@ local function BuildElements(Container, AccentColor)
 	return API
 end
 
--- ================================================================
-
 function Library:CreateWindow(Parametrs)
 	if not Parametrs or typeof(Parametrs["Name"]) ~= "string" then return end
 
@@ -394,13 +392,11 @@ function Library:CreateWindow(Parametrs)
 			TextSize = 13, Font = Enum.Font.Code, TextXAlignment = Enum.TextXAlignment.Center
 		})
 
-		-- Двухколоночный контент таба
 		local TabContent = CreateObj("Frame", {
 			Parent = ContentContainer, Size = UDim2.new(1,-4,1,-4), Position = UDim2.new(0,2,0,2),
 			BackgroundTransparency = 1, BorderSizePixel = 0, Visible = false
 		})
 
-		-- Левая колонка (ScrollingFrame для боксов)
 		local LeftCol = CreateObj("ScrollingFrame", {
 			Parent = TabContent, Size = UDim2.new(0.5,-3,1,0), Position = UDim2.new(0,0,0,0),
 			BackgroundTransparency = 1, BorderSizePixel = 0,
@@ -415,7 +411,6 @@ function Library:CreateWindow(Parametrs)
 			Parent = LeftCol, PaddingTop = UDim.new(0,4), PaddingLeft = UDim.new(0,4), PaddingRight = UDim.new(0,3)
 		})
 
-		-- Правая колонка
 		local RightCol = CreateObj("ScrollingFrame", {
 			Parent = TabContent, Size = UDim2.new(0.5,-3,1,0), Position = UDim2.new(0.5,3,0,0),
 			BackgroundTransparency = 1, BorderSizePixel = 0,
@@ -430,7 +425,6 @@ function Library:CreateWindow(Parametrs)
 			Parent = RightCol, PaddingTop = UDim.new(0,4), PaddingLeft = UDim.new(0,3), PaddingRight = UDim.new(0,4)
 		})
 
-		-- Вертикальный разделитель
 		CreateObj("Frame", {
 			Parent = TabContent, Size = UDim2.new(0,1,1,-8), Position = UDim2.new(0.5,-1,0,4),
 			BackgroundColor3 = Color3.fromRGB(40,40,40), BorderSizePixel = 0
@@ -453,15 +447,11 @@ function Library:CreateWindow(Parametrs)
 			if ActiveTab ~= TabObj then TabButton.BackgroundColor3 = Library.Theme.BackgroundOutline end
 		end)
 
-		-- ============================================================
-		-- AddBox — секция в левой или правой колонке
-		-- ============================================================
 		function TabObj:AddBox(BoxParams)
 			if not BoxParams then return end
 			local Origin = BoxParams["Origin"] or "Left"
 			local ColParent = Origin == "Right" and RightCol or LeftCol
 
-			-- Обёртка с акцентной рамкой
 			local BoxOuter = CreateObj("Frame", {
 				Parent = ColParent,
 				Size = UDim2.new(1,0,0,0),
@@ -480,7 +470,6 @@ function Library:CreateWindow(Parametrs)
 				BorderSizePixel = 0
 			})
 
-			-- Заголовок (опционально)
 			local headerH = 0
 			if BoxParams["Name"] and BoxParams["Name"] ~= "" then
 				headerH = 22
@@ -500,7 +489,6 @@ function Library:CreateWindow(Parametrs)
 				})
 			end
 
-			-- Контейнер для элементов
 			local BoxBody = CreateObj("Frame", {
 				Parent = BoxInner, Size = UDim2.new(1,0,0,0),
 				Position = UDim2.new(0,0,0,headerH),
@@ -517,7 +505,6 @@ function Library:CreateWindow(Parametrs)
 				PaddingLeft = UDim.new(0,2), PaddingRight = UDim.new(0,2)
 			})
 
-			-- Возвращаем объект с полным набором методов
 			return BuildElements(BoxBody, Parametrs["Color"])
 		end
 

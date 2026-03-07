@@ -72,7 +72,6 @@ local function MakeDraggable(frame, dragHandle)
 	end)
 end
 
--- Создать разделитель (padding/spacer) в scroll frame
 local function AddPadding(parent, px)
 	local pad = CreateObj("UIPadding", {
 		Parent = parent,
@@ -90,7 +89,6 @@ function Library:CreateWindow(Parametrs)
 
 	local AccentColor = Parametrs["Color"] or Color3.fromRGB(255,255,255)
 
-	-- Main window frame
 	local WindowFrame = CreateObj("Frame",{
 		Parent = ScreenGui__,
 		Size = UDim2.new(0, 500, 0, 550),
@@ -103,7 +101,6 @@ function Library:CreateWindow(Parametrs)
 		ClipsDescendants = false,
 	})
 
-	-- Title bar
 	local TitleFrame = CreateObj("Frame", {
 		Parent = WindowFrame,
 		Size = UDim2.new(1, 0, 0, 40),
@@ -144,7 +141,6 @@ function Library:CreateWindow(Parametrs)
 		ZIndex = 6,
 	})
 
-	-- Main content outline
 	local WindowOutline = CreateObj("Frame", {
 		Parent = WindowFrame,
 		Size = UDim2.new(1, -2, 1, -42),
@@ -163,7 +159,6 @@ function Library:CreateWindow(Parametrs)
 		ZIndex = 2,
 	})
 
-	-- Content area (right side inside main window)
 	local ContentFrame = CreateObj("Frame", {
 		Parent = WindowInner,
 		Size = UDim2.new(1, 0, 1, 0),
@@ -173,7 +168,6 @@ function Library:CreateWindow(Parametrs)
 		ZIndex = 3,
 	})
 
-	-- Tabs sidebar (left side, sliding out)
 	local TabsFrame = CreateObj("Frame",{
 		Parent = WindowFrame,
 		Size = UDim2.new(0, 133, 1, 0),
@@ -203,7 +197,6 @@ function Library:CreateWindow(Parametrs)
 		ZIndex = 3,
 	})
 
-	-- Scrolling list for tab buttons
 	local TabsList = CreateObj("ScrollingFrame", {
 		Parent = TabsInner,
 		Size = UDim2.new(1, 0, 1, 0),
@@ -241,7 +234,6 @@ function Library:CreateWindow(Parametrs)
 	function Window:AddTab(TabParams)
 		if not TabParams or typeof(TabParams["Name"]) ~= "string" then return end
 
-		-- Tab button
 		local TabBtn = CreateObj("TextButton", {
 			Parent = TabsList,
 			Size = UDim2.new(1, 0, 0, 30),
@@ -255,12 +247,6 @@ function Library:CreateWindow(Parametrs)
 			ZIndex = 5,
 		})
 
-		local TabBtnCorner = CreateObj("UICorner", {
-			Parent = TabBtn,
-			CornerRadius = UDim.new(0, 3),
-		})
-
-		-- Tab content page
 		local TabPage = CreateObj("Frame", {
 			Parent = ContentFrame,
 			Size = UDim2.new(1, 0, 1, 0),
@@ -271,7 +257,6 @@ function Library:CreateWindow(Parametrs)
 			ZIndex = 3,
 		})
 
-		-- Two column layout
 		local LeftColumn = CreateObj("ScrollingFrame", {
 			Parent = TabPage,
 			Size = UDim2.new(0.5, -4, 1, -8),
@@ -342,7 +327,6 @@ function Library:CreateWindow(Parametrs)
 
 		TabBtn.MouseButton1Click:Connect(SetActive)
 
-		-- Auto-activate first tab
 		if #Tabs == 0 then
 			SetActive()
 		end
@@ -355,12 +339,11 @@ function Library:CreateWindow(Parametrs)
 			local origin = BoxParams["Origin"] or "Left"
 			local parent = (origin == "Right") and RightColumn or LeftColumn
 
-			-- Box container
 			local BoxFrame = CreateObj("Frame", {
 				Parent = parent,
 				Size = UDim2.new(1, 0, 0, 0),
 				AutomaticSize = Enum.AutomaticSize.Y,
-				BackgroundColor3 = Library.Theme.Background,
+				BackgroundColor3 = Library.Theme.ElementBackground,
 				BorderSizePixel = 0,
 				ZIndex = 4,
 			})
@@ -372,12 +355,6 @@ function Library:CreateWindow(Parametrs)
 				Transparency = 0.7,
 			})
 
-			local BoxCorner = CreateObj("UICorner", {
-				Parent = BoxFrame,
-				CornerRadius = UDim.new(0, 4),
-			})
-
-			-- Box title
 			local BoxTitle = CreateObj("TextLabel", {
 				Parent = BoxFrame,
 				Size = UDim2.new(1, 0, 0, 24),
@@ -392,12 +369,6 @@ function Library:CreateWindow(Parametrs)
 				ZIndex = 5,
 			})
 
-			local BoxTitleCorner = CreateObj("UICorner", {
-				Parent = BoxTitle,
-				CornerRadius = UDim.new(0, 4),
-			})
-
-			-- Elements scroll inside box
 			local BoxContent = CreateObj("Frame", {
 				Parent = BoxFrame,
 				Size = UDim2.new(1, 0, 0, 0),
@@ -426,7 +397,6 @@ function Library:CreateWindow(Parametrs)
 
 			local Box = {}
 
-			-- ===================== TOGGLE =====================
 			function Box:AddToggle(Params)
 				local value = Params["Default"] or false
 				local callback = Params["Callback"] or function() end
@@ -512,7 +482,6 @@ function Library:CreateWindow(Parametrs)
 				return ToggleAPI
 			end
 
-			-- ===================== BUTTON =====================
 			function Box:AddButton(Params)
 				local callback = Params["Callback"] or function() end
 
@@ -527,11 +496,6 @@ function Library:CreateWindow(Parametrs)
 					Font = Enum.Font.Code,
 					AutoButtonColor = false,
 					ZIndex = 5,
-				})
-
-				local BtnCorner = CreateObj("UICorner", {
-					Parent = Btn,
-					CornerRadius = UDim.new(0, 3),
 				})
 
 				local tweenInfo = TweenInfo.new(0.1, Enum.EasingStyle.Quad)
@@ -945,7 +909,6 @@ function Library:CreateWindow(Parametrs)
 		return Tab
 	end
 
-	-- Toggle visibility
 	Library._WindowFrame = WindowFrame
 
 	return Window
@@ -968,5 +931,5 @@ Input.InputBegan:Connect(function(input, gameProcessed)
 		end
 	end
 end)
-
+--
 return Library
